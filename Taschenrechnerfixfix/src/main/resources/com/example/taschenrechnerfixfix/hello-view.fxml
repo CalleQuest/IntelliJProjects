@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="489.0" prefWidth="494.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.taschenrechnerfixfix.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <ComboBox fx:id="sprachen" prefWidth="150.0" />
+   <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <children>
+         <ListView fx:id="rechnungen" layoutX="27.0" layoutY="78.0" prefHeight="196.0" prefWidth="195.0" />
+         <TextField fx:id="zahl1" layoutX="37.0" layoutY="26.0" prefHeight="25.0" prefWidth="54.0" />
+         <TextField fx:id="zahl2" layoutX="196.0" layoutY="26.0" prefHeight="25.0" prefWidth="62.0" />
+         <ComboBox fx:id="operatoren" layoutX="115.0" layoutY="26.0" prefHeight="25.0" prefWidth="54.0" />
+         <Label layoutX="288.0" layoutY="30.0" text="=" />
+         <Label fx:id="lblErgebnis" layoutX="317.0" layoutY="30.0" text="Label" />
+      </children>
+   </AnchorPane>
+   <Button fx:id="btnBerech" mnemonicParsing="false" onAction="#berechnen" text="Berechnen" />
+   <Button fx:id="btnReset" mnemonicParsing="false" onAction="#reset" text="Zurücksetzen" />
+   <Button fx:id="btnResetAll" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#resetall" text="Alle Zurücksetzen" />
+</VBox>
