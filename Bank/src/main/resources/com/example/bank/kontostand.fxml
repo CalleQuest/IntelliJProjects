@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bank.HelloControllerKonto">
+   <children>
+      <Label fx:id="lblTitel" layoutX="248.0" layoutY="54.0" text="Ihre Kontoübersicht" />
+      <Label fx:id="lblKontotxt" layoutX="141.0" layoutY="111.0" text="Aktueller Kontostand" />
+      <Label fx:id="lblGuthabtxt" layoutX="141.0" layoutY="154.0" text="Guthabenzinsen p.a" />
+      <Label fx:id="lblKontostand" layoutX="353.0" layoutY="111.0" text="Label" />
+      <Label fx:id="lblZinsen" layoutX="353.0" layoutY="154.0" text="Label" />
+      <TextField fx:id="txtfieldEin" layoutX="48.0" layoutY="361.0" />
+      <TextField fx:id="txtfieldAus" layoutX="381.0" layoutY="361.0" />
+      <Button fx:id="btnEin" layoutX="86.0" layoutY="324.0" mnemonicParsing="false" onAction="#Einzahlung" text="Einzahlung" />
+      <Button fx:id="btnAus" layoutX="417.0" layoutY="324.0" mnemonicParsing="false" onAction="#Auszahlung" text="Auszahlung" />
+   </children>
+</AnchorPane>
