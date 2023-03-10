@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 public class HelloController {
 
     private int counter;
-    public static Locale locale;
     private String username = "Calvin";
     private String password = "orangensaft";
     @FXML
@@ -60,32 +59,24 @@ public class HelloController {
         int sprache = comboSprache.getSelectionModel().getSelectedIndex();
         switch (sprache) {
             case 0:
-                setLocale(new Locale("de", "DE"));
-                ResourceBundle.getBundle("Sprachen", getLocale());
+                Main.setLocale(new Locale("de", "DE"));
+                ResourceBundle.getBundle("Sprachen", Main.getLocale());
                 break;
             case 1:
-                setLocale(new Locale("en", "EN"));
-                ResourceBundle.getBundle("Sprachen", getLocale());
+                Main.setLocale(new Locale("en", "EN"));
+                ResourceBundle.getBundle("Sprachen", Main.getLocale());
                 break;
             case 2:
-                setLocale(new Locale("es", "ES"));
-                ResourceBundle.getBundle("Sprachen", getLocale());
+                Main.setLocale(new Locale("es", "ES"));
+                ResourceBundle.getBundle("Sprachen", Main.getLocale());
                 break;
         }
         updateUI();
     }
-    public static Locale getLocale() {
-        if (locale == null) {
-            locale = new Locale("de", "DE");
-        }
-        return locale;
-    }
-    public static void setLocale(Locale newLocale) {
-        locale = newLocale;
-    }
+
 
     private void updateUI() {
-        ResourceBundle resources = ResourceBundle.getBundle("Sprachen", getLocale());
+        ResourceBundle resources = ResourceBundle.getBundle("Sprachen", Main.getLocale());
         btnLogin.setText(resources.getString("btnLogin"));
         lblWelcome.setText(resources.getString("lblWelcome"));
         lblSprache.setText(resources.getString("lblSprache"));

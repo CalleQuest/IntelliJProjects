@@ -7,13 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ResourceBundle;
 
 public class HelloControllerKonto {
 
-    DecimalFormat df = new DecimalFormat("#.00");
-    private DoubleProperty kontostand = new SimpleDoubleProperty(5000);
-    private DoubleProperty zinsen = new SimpleDoubleProperty(20);
+    private Konto konto;
+    private static NumberFormat format = NumberFormat.getCurrencyInstance(Main.getLocale());
 
     @FXML private TextField txtfieldEin;
     @FXML private TextField txtfieldAus;
@@ -27,33 +27,27 @@ public class HelloControllerKonto {
 
     @FXML public void initialize()
     {
-        lblZinsen.setText(String.valueOf(zinsen.get()));
-        lblKontostand.setText(String.valueOf(kontostand.get()));
+        konto = new Konto();
+        lblZinsen.textProperty().bindBidirectional(konto.zinsenProperty(), format);
+        lblKontostand.textProperty().bindBidirectional(konto.kontostandProperty(), format);
         updateLanguage();
-        zinsen.bind(kontostand.multiply(0.01));
-
     }
+
+
 
     public void Einzahlung()
     {
-
-        kontostand.setValue(kontostand.getValue() + Double.parseDouble(txtfieldEin.getText()));
-        updateUI();
+        konto.setKontostandEin(Double.parseDouble(txtfieldEin.getText()));
     }
     public void Auszahlung()
     {
-        kontostand.setValue(kontostand.getValue() - Double.parseDouble(txtfieldAus.getText()));
-        updateUI();
+        konto.setKontostandAus(Double.parseDouble(txtfieldEin.getText()));
     }
-    public void updateUI()
-    {
-        lblZinsen.setText(String.valueOf(df.format(zinsen.get())));
-        lblKontostand.setText(String.valueOf(df.format(kontostand.get())));
-    }
+
 
     public void updateLanguage()
     {
-        ResourceBundle resources = ResourceBundle.getBundle("Sprachen", HelloController.getLocale());
+        ResourceBundle resources = ResourceBundle.getBundle("Sprachen", Main.getLocale());
         lblTitel.setText(resources.getString("lblTitel"));
         lblKontotxt.setText(resources.getString("lblKontotxt"));
         lblGuthabtxt.setText(resources.getString("lblGuthabtxt"));

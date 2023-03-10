@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen2.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen2_de.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen2_en.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen2_fr.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen2_us.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen_DE.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen_FR.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Sprachen_US.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen_DE.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen_FR.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen_US.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen_en.properties" />
+      <base-name>Sprachen</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen2.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen2_de.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen2_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen2_fr.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/Sprachen2_us.properties" />
+      <base-name>Sprachen2</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>

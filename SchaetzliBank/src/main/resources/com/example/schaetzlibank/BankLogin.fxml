@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.schaetzlibank.HelloController">
+    <children>
+        <Button fx:id="blogin" layoutX="195.0" layoutY="194.0" mnemonicParsing="false" onAction="#switchScene" />
+        <Label fx:id="lwelcome" layoutX="24.0" layoutY="31.0" prefHeight="17.0" prefWidth="315.0" textAlignment="CENTER" />
+        <Label fx:id="lUser" layoutX="72.0" layoutY="107.0" />
+        <Label fx:id="lPassword" layoutX="72.0" layoutY="140.0" />
+        <PasswordField fx:id="lpasswordF" layoutX="147.0" layoutY="136.0" />
+        <TextField fx:id="tfuser" layoutX="147.0" layoutY="103.0" />
+      <ComboBox fx:id="cblanguage" layoutX="312.0" layoutY="18.0" onAction="#auswahl" prefHeight="25.0" prefWidth="109.0" />
+    </children>
+</AnchorPane>
