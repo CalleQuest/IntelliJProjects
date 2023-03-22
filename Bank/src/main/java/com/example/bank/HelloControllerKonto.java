@@ -2,10 +2,13 @@ package com.example.bank;
 
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ResourceBundle;
@@ -13,6 +16,8 @@ import java.util.ResourceBundle;
 public class HelloControllerKonto {
 
     private Konto konto;
+    private Scene scene;
+    private FXMLLoader loader;
     private static NumberFormat format = NumberFormat.getCurrencyInstance(Main.getLocale());
 
     @FXML private TextField txtfieldEin;
@@ -31,6 +36,16 @@ public class HelloControllerKonto {
         lblZinsen.textProperty().bindBidirectional(konto.zinsenProperty(), format);
         lblKontostand.textProperty().bindBidirectional(konto.kontostandProperty(), format);
         updateLanguage();
+        loader = new FXMLLoader(HelloApplication.class.getResource("kontostand.fxml"));
+        try
+        {
+            scene = new Scene(loader.load(), 600, 350);
+        }
+        catch(IOException e)
+        {
+            System.out.println("Fehler");
+        }
+
     }
 
 
@@ -54,5 +69,8 @@ public class HelloControllerKonto {
         btnEin.setText(resources.getString("btnEin"));
         btnAus.setText(resources.getString("btnAus"));
     }
-
+    public Scene getScene()
+    {
+        return scene;
+    }
 }

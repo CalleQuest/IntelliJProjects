@@ -38,16 +38,16 @@ public class HelloController implements Initializable {
         switch (sprache)
         {
             case 0:
-                Main.setLocale(new Locale("de", "DE"));
-                ResourceBundle.getBundle("Sprachen", Main.getLocale());
+                Localemain.setLocale(new Locale("de", "DE"));
+                ResourceBundle.getBundle("Sprachen", Localemain.getLocale());
                 break;
             case 1:
-                Main.setLocale(new Locale("en", "US"));
-                ResourceBundle.getBundle("Sprachen", Main.getLocale());
+                Localemain.setLocale(new Locale("en", "US"));
+                ResourceBundle.getBundle("Sprachen", Localemain.getLocale());
                 break;
                 case 2:
-                Main.setLocale(new Locale("fr", "FR"));
-                ResourceBundle.getBundle("Sprachen", Main.getLocale());
+                Localemain.setLocale(new Locale("fr", "FR"));
+                ResourceBundle.getBundle("Sprachen", Localemain.getLocale());
                 break;
 
 
@@ -64,7 +64,7 @@ public class HelloController implements Initializable {
 
     private void updateUI()
     {
-        ResourceBundle resources = ResourceBundle.getBundle("Sprachen", Main.getLocale());
+        ResourceBundle resources = ResourceBundle.getBundle("Sprachen", Localemain.getLocale());
         blogin.setText(resources.getString("blogin"));
         lwelcome.setText(resources.getString("lwelcome"));
         lUser.setText(resources.getString("lUser"));

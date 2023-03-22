@@ -1,11 +1,14 @@
 package com.example.bank;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
-import java.net.URL;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -14,8 +17,22 @@ public class HelloController {
     private int counter;
     private String username = "Calvin";
     private String password = "orangensaft";
+    public static Scene scene;
+    private FXMLLoader loader;
     @FXML
-    public void initialize(){starter();}
+    public void initialize(){
+        loader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        try
+        {
+            scene = new Scene(loader.load(), 600, 350);
+        }
+        catch(IOException e)
+        {
+            System.out.println("Fehler");
+        }
+        starter();
+        comboSprache.getSelectionModel().selectFirst();
+    }
     @FXML
     private TextField uEingabe;
     @FXML
@@ -83,5 +100,10 @@ public class HelloController {
         lblUser.setText(resources.getString("lblUser"));
         lblPass.setText(resources.getString("lblPass"));
 
+    }
+
+    public Scene getScene()
+    {
+        return scene;
     }
 }

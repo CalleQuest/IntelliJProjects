@@ -2,7 +2,7 @@ package com.example.schaetzlibank;
 
 import java.util.Locale;
 
-public class Main
+public class Localemain
 {
     private static Locale locale;
 

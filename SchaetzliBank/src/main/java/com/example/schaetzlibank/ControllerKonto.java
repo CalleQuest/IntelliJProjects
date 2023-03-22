@@ -30,13 +30,13 @@ public class ControllerKonto implements Initializable
 
     private Konto konto;
 
-    private NumberFormat format = NumberFormat.getCurrencyInstance(Main.getLocale());
+    private NumberFormat format = NumberFormat.getCurrencyInstance(Localemain.getLocale());
 
 
     public void update()
     {
 
-        ResourceBundle resources = ResourceBundle.getBundle("Sprachen2", Main.getLocale());
+        ResourceBundle resources = ResourceBundle.getBundle("Sprachen2", Localemain.getLocale());
         lKontouebersicht.setText(resources.getString("lKontouebersicht"));
         lKontostandT.setText(resources.getString("lKontostandT"));
         lZinsenT.setText(resources.getString("lZinsenT"));
