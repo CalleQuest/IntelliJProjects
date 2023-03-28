@@ -4,12 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.serverapp.HelloController">
    <children>
-      <TextArea layoutX="59.0" layoutY="109.0" prefHeight="200.0" prefWidth="353.0" />
+      <TextArea fx:id="nachrichtenBox" layoutX="59.0" layoutY="109.0" prefHeight="200.0" prefWidth="353.0" />
       <TextField fx:id="portInput" layoutX="437.0" layoutY="109.0" />
-      <Button fx:id="serverBtn" layoutX="457.0" layoutY="156.0" mnemonicParsing="false" onAction="#serverMaker" prefHeight="71.0" prefWidth="85.0" text="Start">
+      <Button fx:id="serverBtn" layoutX="440.0" layoutY="156.0" mnemonicParsing="false" onAction="#serverMaker" prefHeight="71.0" prefWidth="149.0" text="Start">
          <font>
             <Font size="24.0" />
          </font>

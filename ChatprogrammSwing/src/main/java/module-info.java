@@ -5,4 +5,7 @@ module com.example.chatprogrammswing {
 
     opens com.example.serverapp to javafx.fxml;
     exports com.example.serverapp;
+
+    opens clientapp to javafx.fxml;
+    exports clientapp;
 }

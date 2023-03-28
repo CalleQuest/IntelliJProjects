@@ -3,32 +3,49 @@ package clientapp;
 import java.io.*;
 import java.net.Socket;
 
-public class Client {
-    Socket client;
+public class Client implements Runnable {
+    private Socket client;
 
-    OutputStream out;
-    PrintWriter writer;
+    private OutputStream out;
+    private PrintWriter writer;
 
-    InputStream in;
-    BufferedReader reader;
+    private InputStream in;
+    private BufferedReader reader;
 
-    public void createClient() {
+    private String message;
+
+    public void createClient(Serverobj server) {
         try
         {
-            client = new Socket("localhost", 5555);
+            client = new Socket(server.getIpAdresse(), server.getPort());
             System.out.println("Client gestartet");
 
-            //Daten an Server senden
+            //Daten an Server senden setup
             out = client.getOutputStream();
             writer = new PrintWriter(out);
 
-            //Daten, welche vom Server gesendet werden
+            //Daten, welche vom Server gesendet werden setup
             in = client.getInputStream();
             reader = new BufferedReader(new InputStreamReader(in));
 
-            writer.write("Hallo Server!\n");
-            writer.flush();
 
+
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+
+    }
+    public void dataSend(String message)
+    {
+        writer.write(message + "\n");
+        writer.flush();
+    }
+
+    public void datenEmpfang()
+    {
+        try {
             String s = null;
 
             while ((s = reader.readLine())!= null)
@@ -37,11 +54,32 @@ public class Client {
             }
             writer.close();
             reader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        catch (IOException e)
-        {
-            System.out.println(e);
-        }
+
     }
 
+   /* Thread dataEmpfaenger = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                String s = null;
+
+                while ((s = reader.readLine())!= null)
+                {
+                    System.out.println("Empfangen vom Server:" + s);
+                }
+                writer.close();
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    });*/
+    // Messagereceiver
+    @Override
+    public void run() {
+        datenEmpfang();
+    }
 }
