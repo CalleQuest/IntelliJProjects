@@ -5,6 +5,7 @@ import java.net.Socket;
 
 public class ClientProxy implements Runnable {
 
+    private String username;
     private Socket clientSocket;
     private HelloController serverCon;
     //Brauchen wir fürs empfangen von daten
@@ -15,6 +16,8 @@ public class ClientProxy implements Runnable {
     private InputStream in;
     private BufferedReader reader;
     private String inputString;
+
+    private Thread t1;
 
     public ClientProxy(HelloController serverControll, Socket newSocket) throws IOException {
         this.serverCon = serverControll;
@@ -28,6 +31,11 @@ public class ClientProxy implements Runnable {
         in = clientSocket.getInputStream();
         reader = new BufferedReader(new InputStreamReader(in));
 
+        this.username = username;
+
+        t1 = new Thread(this);
+        t1.start();
+
     }
     //Hier schickt der Client den Thread
     @Override
@@ -36,7 +44,7 @@ public class ClientProxy implements Runnable {
             inputString = null;
 
             while ((inputString = reader.readLine()) != null) {
-            serverCon.nachrichtenBox.setText(inputString);
+            serverCon.nachrichtenBox.appendText(inputString+"\n");
             }
             writer.close();
             reader.close();

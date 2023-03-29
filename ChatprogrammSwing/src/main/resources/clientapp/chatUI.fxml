@@ -12,5 +12,7 @@
       <Label layoutX="101.0" layoutY="319.0" text="Label" />
       <Label layoutX="101.0" layoutY="77.0" text="Server" />
       <Label layoutX="104.0" layoutY="167.0" text="Text eingeben" />
+      <TextField fx:id="txtUsername" layoutX="412.0" layoutY="104.0" />
+      <Label layoutX="411.0" layoutY="69.0" text="Username" />
    </children>
 </AnchorPane>

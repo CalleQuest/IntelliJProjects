@@ -4,6 +4,12 @@ import java.io.*;
 import java.net.Socket;
 
 public class Client implements Runnable {
+
+    public String getUsername() {
+        return username;
+    }
+
+    private String username;
     private Socket client;
 
     private OutputStream out;
@@ -14,7 +20,7 @@ public class Client implements Runnable {
 
     private String message;
 
-    public void createClient(Serverobj server) {
+    public void createClient(Serverobj server, String username) {
         try
         {
             client = new Socket(server.getIpAdresse(), server.getPort());
@@ -27,6 +33,8 @@ public class Client implements Runnable {
             //Daten, welche vom Server gesendet werden setup
             in = client.getInputStream();
             reader = new BufferedReader(new InputStreamReader(in));
+
+            this.username = username;
 
 
 

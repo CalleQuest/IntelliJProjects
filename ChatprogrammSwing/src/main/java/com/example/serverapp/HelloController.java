@@ -3,6 +3,9 @@ package com.example.serverapp;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 public class HelloController {
     private Server server = new Server(this);
     @FXML
@@ -13,13 +16,14 @@ public class HelloController {
     private Button serverBtn;
     @FXML
     protected TextArea nachrichtenBox;
+    private ArrayList<ClientProxy> clientListe = new ArrayList<ClientProxy>();
 
 
     public void serverMaker() {
         if (portInput.getText() != "" && isNumeric(portInput.getText())) {
             server.createServer(Integer.parseInt(portInput.getText()));
             serverStatus.setText("Server läuft");
-
+            //austauschen mit dem lesen vom proxyclient
             //server.messageReceive.start();
         }
         else
@@ -37,5 +41,9 @@ public class HelloController {
         } catch(NumberFormatException e){
             return false;
         }
+    }
+
+    public ArrayList<ClientProxy> getClientListe() {
+        return clientListe;
     }
 }

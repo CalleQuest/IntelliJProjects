@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Server implements Runnable {
 
-    private ArrayList<ClientProxy> clientListe = new ArrayList<ClientProxy>();
+
     private static int benutzer = 0;
     private ServerSocket serverSock;
     private Thread t1;
@@ -20,7 +20,7 @@ public class Server implements Runnable {
     }
 
 
-    public Thread messageReceive = new Thread(new Runnable() {
+  /*  public Thread messageReceive = new Thread(new Runnable() {
         @Override
         public void run() {
             try {
@@ -38,7 +38,7 @@ public class Server implements Runnable {
                 System.out.println(e);
             }
         }
-    });
+    });*/
     private OutputStream out;
     private PrintWriter writer;
     private String inputString;
@@ -48,12 +48,12 @@ public class Server implements Runnable {
     public void createServer(int port)
     {
         //beim servercreate wird der kreirte server zu einem thread durch die line unter diesen kommentar
-        t1 = new Thread(this);
+
         try
         {
             serverSock = new ServerSocket(port);
             System.out.println("Server gestartet");
-            messageReceive.start();
+            //messageReceive.start();
 
 
         }
@@ -61,6 +61,8 @@ public class Server implements Runnable {
         {
             System.out.println(e);
         }
+        t1 = new Thread(this);
+        t1.start();
     }
 
     @Override
@@ -69,7 +71,9 @@ public class Server implements Runnable {
         {
             while(true)
             {
-                clientListe.add(new ClientProxy(controller,serverSock.accept()));
+                System.out.println("ab hier Parallel vor Anmeldung");
+                controller.getClientListe().add(new ClientProxy(controller,serverSock.accept()));
+                System.out.println("ab hier Parallel NEUE ANMELDUNG!");
             }
             //Neuen client anlegen
 

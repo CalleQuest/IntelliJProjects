@@ -19,17 +19,17 @@ public class ChatController implements Initializable {
     @FXML
     private ComboBox cmbServer;
     @FXML
-    private TextField message;
+    private TextField message,txtUsername;
 
 
     public void sendMessage()
     {
-        client.dataSend(message.getText());
+        client.dataSend(client.getUsername()+": "+ message.getText());
     }
 
     public void serverConnect()
     {
-        client.createClient((Serverobj) cmbServer.getSelectionModel().getSelectedItem());
+        client.createClient((Serverobj) cmbServer.getSelectionModel().getSelectedItem(),txtUsername.getText());
         t1.start();
     }
 
