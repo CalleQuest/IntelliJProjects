@@ -42,6 +42,13 @@ public class HelloController {
             return false;
         }
     }
+    public void broadcastMessages(String message)
+    {
+        for (ClientProxy client: clientListe)
+        {
+            client.dataSend(message);
+        }
+    }
 
     public ArrayList<ClientProxy> getClientListe() {
         return clientListe;

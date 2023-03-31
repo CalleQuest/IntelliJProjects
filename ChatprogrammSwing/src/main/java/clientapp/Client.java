@@ -1,5 +1,7 @@
 package clientapp;
 
+import javafx.scene.control.Alert;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -9,6 +11,7 @@ public class Client implements Runnable {
         return username;
     }
 
+    private ChatController controller;
     private String username;
     private Socket client;
 
@@ -20,21 +23,34 @@ public class Client implements Runnable {
 
     private String message;
 
-    public void createClient(Serverobj server, String username) {
+    public void createClient(Serverobj server, String username,ChatController controller) {
         try
         {
-            client = new Socket(server.getIpAdresse(), server.getPort());
-            System.out.println("Client gestartet");
+            if (controller.txtUsername.getText()!="")
+            {
+                this.controller=controller;
+                client = new Socket(server.getIpAdresse(), server.getPort());
+                System.out.println("Client gestartet");
 
-            //Daten an Server senden setup
-            out = client.getOutputStream();
-            writer = new PrintWriter(out);
+                //Daten an Server senden setup
+                out = client.getOutputStream();
+                writer = new PrintWriter(out);
 
-            //Daten, welche vom Server gesendet werden setup
-            in = client.getInputStream();
-            reader = new BufferedReader(new InputStreamReader(in));
+                //Daten, welche vom Server gesendet werden setup
+                in = client.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(in));
 
-            this.username = username;
+                this.username = username;
+                controller.txtUsername.setDisable(true);
+                new Thread(this).start();
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Bitte Username eingeben");
+                alert.setTitle("UsernameError");
+                alert.showAndWait();
+            }
 
 
 
@@ -47,8 +63,12 @@ public class Client implements Runnable {
     }
     public void dataSend(String message)
     {
-        writer.write(message + "\n");
-        writer.flush();
+        if (controller.message.getText() != "")
+        {
+            writer.write(message + "\n");
+            writer.flush();
+        }
+
     }
 
     public void datenEmpfang()
@@ -58,33 +78,17 @@ public class Client implements Runnable {
 
             while ((s = reader.readLine())!= null)
             {
-                System.out.println("Empfangen vom Server:" + s);
+                controller.chatBox.appendText(s+"\n");
+                System.out.println(s);
+
+                //System.out.println("Empfangen vom Server:" + s);
             }
-            writer.close();
             reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
-   /* Thread dataEmpfaenger = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            try {
-                String s = null;
-
-                while ((s = reader.readLine())!= null)
-                {
-                    System.out.println("Empfangen vom Server:" + s);
-                }
-                writer.close();
-                reader.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    });*/
     // Messagereceiver
     @Override
     public void run() {

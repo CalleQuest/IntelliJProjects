@@ -2,10 +2,7 @@ package clientapp;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,11 +12,12 @@ public class ChatController implements Initializable {
     private Client client = new Client();
     private ArrayList<Serverobj> serverListe = new ArrayList<Serverobj>();
     private Serverobj localHost = new Serverobj("Lokaler PC","localhost",5555);
-    private Thread t1 = new Thread(client);
     @FXML
     private ComboBox cmbServer;
     @FXML
-    private TextField message,txtUsername;
+    protected TextField message,txtUsername;
+    @FXML
+    protected TextArea chatBox;
 
 
     public void sendMessage()
@@ -29,8 +27,7 @@ public class ChatController implements Initializable {
 
     public void serverConnect()
     {
-        client.createClient((Serverobj) cmbServer.getSelectionModel().getSelectedItem(),txtUsername.getText());
-        t1.start();
+        client.createClient((Serverobj) cmbServer.getSelectionModel().getSelectedItem(),txtUsername.getText(),this);
     }
 
     @Override

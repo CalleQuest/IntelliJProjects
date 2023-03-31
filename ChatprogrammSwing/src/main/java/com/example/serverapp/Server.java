@@ -20,25 +20,6 @@ public class Server implements Runnable {
     }
 
 
-  /*  public Thread messageReceive = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            try {
-                inputString = null;
-
-                while ((inputString = reader.readLine()) != null) {
-                    writer.write(inputString + "\n");
-                    writer.flush();
-                    System.out.println("Empfangen vom Client: " + inputString);
-                }
-                writer.close();
-                reader.close();
-            }catch (IOException e)
-            {
-                System.out.println(e);
-            }
-        }
-    });*/
     private OutputStream out;
     private PrintWriter writer;
     private String inputString;

@@ -9,10 +9,11 @@
       <Button fx:id="btnConnect" layoutX="314.0" layoutY="104.0" mnemonicParsing="false" onAction="#serverConnect" text="Start" />
       <Button fx:id="btnSendMsg" layoutX="397.0" layoutY="200.0" mnemonicParsing="false" onAction="#sendMessage" text="senden" />
       <TextField fx:id="message" layoutX="102.0" layoutY="200.0" prefHeight="25.0" prefWidth="258.0" />
-      <Label layoutX="101.0" layoutY="319.0" text="Label" />
       <Label layoutX="101.0" layoutY="77.0" text="Server" />
       <Label layoutX="104.0" layoutY="167.0" text="Text eingeben" />
       <TextField fx:id="txtUsername" layoutX="412.0" layoutY="104.0" />
       <Label layoutX="411.0" layoutY="69.0" text="Username" />
+      <TextArea fx:id="chatBox" editable="false" layoutX="79.0" layoutY="266.0" prefHeight="108.0" prefWidth="423.0" />
+      <Label layoutX="79.0" layoutY="241.0" text="Chat:" />
    </children>
 </AnchorPane>

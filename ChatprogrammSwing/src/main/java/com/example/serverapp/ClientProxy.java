@@ -37,6 +37,11 @@ public class ClientProxy implements Runnable {
         t1.start();
 
     }
+    public void dataSend(String message)
+    {
+        writer.write(message + "\n");
+        writer.flush();
+    }
     //Hier schickt der Client den Thread
     @Override
     public void run() {
@@ -44,7 +49,8 @@ public class ClientProxy implements Runnable {
             inputString = null;
 
             while ((inputString = reader.readLine()) != null) {
-            serverCon.nachrichtenBox.appendText(inputString+"\n");
+                serverCon.nachrichtenBox.appendText(inputString+"\n");
+                serverCon.broadcastMessages(inputString);
             }
             writer.close();
             reader.close();
