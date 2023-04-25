@@ -1,11 +1,12 @@
-package Clientside;
+package Serverside;
+
+import Clientside.ClientController;
 
 import java.io.*;
 import java.net.Socket;
 
-public class Client implements Runnable {
-    private Socket socket;
-    private ClientController controller;
+public class ClientProxy implements Runnable {
+    private ServerController controller;
 
     private OutputStream out;
     private PrintWriter writer;
@@ -17,10 +18,8 @@ public class Client implements Runnable {
 
 
 
-    public Client (String ipadress, int port, ClientController controller) throws IOException {
+    public ClientProxy(ServerController controller,Socket socket) throws IOException {
         this.controller = controller;
-
-        socket = new Socket(ipadress,port);
         System.out.println("Client gestartet");
 
         out = socket.getOutputStream();
@@ -33,10 +32,13 @@ public class Client implements Runnable {
         t.start();
     }
 
-    public void sendMessage(String message)
+    public void broadcastMessage(String message)
     {
-     writer.write(message+ "\n");
-     writer.flush();
+        for (ClientProxy proxy : controller.clientList)
+        {
+            proxy.writer.write(message+"\n");
+            proxy.writer.flush();
+        }
     }
 
     @Override
@@ -46,7 +48,7 @@ public class Client implements Runnable {
 
             while ((s= reader.readLine()) != null)
             {
-                controller.chatbox.appendText(s+"\n");
+                broadcastMessage(s);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

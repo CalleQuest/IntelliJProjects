@@ -11,9 +11,9 @@ import java.io.IOException;
 public class ClientApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Clientside/clientUI.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("clientUI2.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Chatprogramm");
         stage.setScene(scene);
         stage.show();
     }
