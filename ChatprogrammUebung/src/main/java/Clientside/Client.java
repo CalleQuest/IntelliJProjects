@@ -48,6 +48,7 @@ public class Client implements Runnable {
             {
                 controller.chatbox.appendText(s+"\n");
             }
+            reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

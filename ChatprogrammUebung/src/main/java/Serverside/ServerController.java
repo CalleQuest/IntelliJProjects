@@ -2,6 +2,7 @@ package Serverside;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -14,9 +15,21 @@ public class ServerController {
     protected ArrayList<ClientProxy> clientList = new ArrayList<ClientProxy>();
     protected Server server;
     @FXML
+    private TextArea chatlog;
+    @FXML
     private Label status;
     @FXML
     private TextField txtPort;
+
+
+    public void broadcast(String message)
+    {
+        for (ClientProxy proxy : clientList)
+        {
+            proxy.sendMessage(message);
+            chatlog.appendText(message+"\n");
+        }
+    }
 
     public void createServer() {
         try

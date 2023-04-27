@@ -32,13 +32,10 @@ public class ClientProxy implements Runnable {
         t.start();
     }
 
-    public void broadcastMessage(String message)
+    public void sendMessage(String message)
     {
-        for (ClientProxy proxy : controller.clientList)
-        {
-            proxy.writer.write(message+"\n");
-            proxy.writer.flush();
-        }
+        writer.write(message+"\n");
+        writer.flush();
     }
 
     @Override
@@ -48,7 +45,7 @@ public class ClientProxy implements Runnable {
 
             while ((s= reader.readLine()) != null)
             {
-                broadcastMessage(s);
+                controller.broadcast(s);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
